@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-layout',
@@ -16,9 +16,13 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit() {
     this.basicForm = this.fb.group({
-      firstName: [''],
-      lastName: [''],
-      occupation: ['']
+      firstName: ["", Validators.compose([Validators.required])],
+      lastName: ["", Validators.compose([Validators.required])],
+      occupation: [{value: 'Empleado', disabled: true}, Validators.compose([Validators.required])]
     });
+  }
+
+  onSubmit(): void {
+    console.log(this.basicForm.value);
   }
 }

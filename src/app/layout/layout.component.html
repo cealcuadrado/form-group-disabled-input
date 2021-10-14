@@ -1,26 +1,30 @@
-<form>
+<form [formGroup]="basicForm" (submit)="onSubmit()">
   <div class="row mb-2">
     <div class="col-12 col-lg-4">
       <div class="form-group">
         <label>Nombre:</label>
-        <input type="text" class="form-control"/>
+        <input type="text" class="form-control" formControlName="firstName"/>
       </div>
     </div>
     <div class="col-12 col-lg-4">
       <div class="form-group">
         <label>Apellido:</label>
-        <input type="text" class="form-control" />
+        <input type="text" class="form-control" formControlName="lastName"/>
       </div>
     </div>
     <div class="col-12 col-lg-4">
       <div class="form-group">
         <label>Ocupación:</label>
-        <input type="text" class="form-control" />
+        <input type="text" class="form-control" formControlName="occupation"/>
       </div>
     </div>
   </div>
 
-  <button type="submit" class="btn btn-success">
+  <button type="submit" class="btn btn-success" [disabled]="basicForm.invalid">
     Enviar
   </button>
 </form>
+
+<hr/>
+
+<p>{{basicForm.value | json}}</p>
